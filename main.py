@@ -3,9 +3,23 @@ from ans import *
 def getANS(exam):
 	ans = dict()
 	for i in range(len(exam)):
-		a = input(f"{i+1} : ")
-		ans[i+1] = a
+		while True:
+			a = input(f"{i+1} : ")
 
+			if a == "change":
+				while True:
+					questionNum = int(input("Question number : "))
+					if questionNum in ans:
+						break
+					else:
+						print("Question Number not found")
+				answerNew = input(f"New answer(Q{questionNum}) : {ans[questionNum]} > ")
+				ans[questionNum] = answerNew
+				print(f"{questionNum} : {answerNew}")
+			else:
+				ans[i+1] = a
+				break
+	
 	return ans
 
 def getPOINT(exam, ans):
