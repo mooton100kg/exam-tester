@@ -1,10 +1,11 @@
 from ans import *
+import time
 
 def getANS(exam):
 	ans = dict()
 	for i in range(len(exam)):
 		while True:
-			a = input(f"{i+1} : ")
+			a = input(f"{i+1}/{len(exam)} : ")
 
 			if a == "change":
 				while True:
@@ -49,6 +50,8 @@ def examList():
 	return exam
 
 if __name__ == "__main__":
+	start_time = time.time()
+
 	exam = examList()
 	ans = getANS(exam)	
 	point, cor, per = getPOINT(exam, ans)
@@ -56,3 +59,6 @@ if __name__ == "__main__":
 	print("PERCENT : ", per)
 	for i in point:
 		print(i, point[i])
+
+	print(f"\nRUNNING TIME : {int(time.time() - start_time)} sec")
+	print(f"TIME PER PROBLEM : {int((time.time() - start_time)/len(exam))} sec")
